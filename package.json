@@ -1,0 +1,30 @@
+{
+  "name": "node-red-led-control",
+  "version": "1.0.0",
+  "description": "Node-RED matrix lcd control",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/daniele.tabanella/node-red-led-control.git"
+  },
+  "keywords": [
+    "node-red"
+  ],
+  "author": "Daniele Tabanella [monsieurLeRenard]",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/daniele.tabanella/node-red-led-control/issues"
+  },
+  "homepage": "https://gitlab.com/daniele.tabanella/node-red-led-control#README",
+  "node-red": {
+    "nodes": {
+      "led-controller": "led-controller.js"
+    }
+  },
+  "dependencies": {
+    "rpi-led-control": "^0.1.2"
+  }
+}
