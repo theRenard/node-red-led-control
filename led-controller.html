@@ -3,7 +3,12 @@
       category: 'function',
       color: '#a6bbcf',
       defaults: {
-          name: {value:""}
+          name: {value:""},
+          brightness: {value:"15"},
+          delay: {value:"500"},
+          dataPin: {value: ""},
+          clockPin: {value: ""},
+          csPin: {value: ""},
       },
       inputs:1,
       outputs:1,
@@ -18,6 +23,26 @@
   <div class="form-row">
       <label for="node-input-name"><i class="icon-tag"></i> Name</label>
       <input type="text" id="node-input-name" placeholder="Name">
+  </div>
+  <div class="form-row">
+    <label for="node-input-delay"><i class="icon-tag"></i> Delay</label>
+    <input type="text" id="node-input-delay">
+  </div>
+  <div class="form-row">
+    <label for="node-input-brightness"><i class="icon-tag"></i> Brightness</label>
+    <input type="text" id="node-input-brightness">
+  </div>
+  <div class="form-row">
+    <label for="node-input-dataPin"><i class="icon-tag"></i> Data Pin</label>
+    <input type="text" id="node-input-dataPin">
+  </div>
+  <div class="form-row">
+    <label for="node-input-clockPin"><i class="icon-tag"></i> Clock Pin</label>
+    <input type="text" id="node-input-clockPin">
+  </div>
+  <div class="form-row">
+    <label for="node-input-csPin"><i class="icon-tag"></i> Cs Pin</label>
+    <input type="text" id="node-input-csPin">
   </div>
 </script>
 
