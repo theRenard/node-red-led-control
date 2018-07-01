@@ -151,9 +151,10 @@ module.exports = function(text, delay, display, cb) {
   }
 
   const isOver = (test, i, display, callback) => { if (test.length === i + 1) {
-    console.log(test.length);
-    console.log(i + 1);
-    display.clearDisplay(0); callback();
+    setTimeout(() => {
+      display.clearDisplay(0);
+      callback();
+    }, delay);
   }};
 
   const displayLetter = (letter, display) => alphabet[letter].forEach((dec, i) => [...dec2bin(dec)].forEach((state, j) => { display.clearDisplay(0); setTimeout(() => { display.setLed(0, i, j, +state); }, 200 )}));
