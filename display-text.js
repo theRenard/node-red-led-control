@@ -133,6 +133,8 @@ module.exports = function(text, delay, display, cb) {
 
   const _delay = delay || 500;
 
+  let _isRunning = false;
+
   const _text = text || 'ciao';
   const _cb = cb || function() {
     console.log('callback');
@@ -154,6 +156,7 @@ module.exports = function(text, delay, display, cb) {
     setTimeout(() => {
       display.clearDisplay(0);
       callback();
+      _isRunning = false;
     }, delay);
   }};
 
@@ -162,6 +165,13 @@ module.exports = function(text, delay, display, cb) {
   const _displayText = (text, delay, display, callback) => [...text]
     .forEach((letter, i) => setTimeout(() => { displayLetter(letter, display); isOver(text, i, display, callback) }, i * delay));
 
-  _displayText(_text, _delay, _display, _cb);
+  const start = () => {
+    if (!_isRunning) {
+      _isRunning = true;
+      _displayText(_text, _delay, _display, _cb);
+    }
+  };
+
+  start();
 
 };
