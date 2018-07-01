@@ -3,7 +3,7 @@ var LedControl = require("rpi-led-control");
 var displayText = require("./display-text");
 
 var text = 'hello darling';
-var delay = 1000;
+var delay = 500;
 var display = new LedControl(12,11,6); // data pin, clock pin, cs pin
 
 module.exports = function (RED) {
@@ -15,7 +15,7 @@ module.exports = function (RED) {
     node.on('input', function (msg) {
 
       console.log(config);
-      displayText(text, delay, display, function() {
+      displayText(msg.payload, delay, display, function() {
         // callback
       });
 
