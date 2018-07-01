@@ -1,4 +1,4 @@
-module.exports = function(text, delay, display, callback) {
+module.exports = function(text, delay, display, cb) {
 
   const alphabet = {
     '/u0000' : [ 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00],   // U+0000 (nul)
@@ -134,7 +134,7 @@ module.exports = function(text, delay, display, callback) {
   const _delay = delay || 500;
 
   const _text = text || 'ciao';
-  const _callback = callback || function() {
+  const _cb = cb || function() {
     console.log('callback');
   };
 
@@ -150,13 +150,13 @@ module.exports = function(text, delay, display, callback) {
     return "00000000".substr(bin.length) + bin;
   }
 
-  const isOver = (test, i, display) => { if (test.length === i + 1) display.clearDisplay(0); callback(); };
+  const isOver = (test, i, display, callback) => { if (test.length === i + 1) display.clearDisplay(0); callback(); };
 
-  const displayLetter = (letter, display) => alphabet[letter].forEach((dec, i) => [...dec2bin(dec)].forEach((state, j) => { display.clearDisplay(0); display.setLed(0, i, j, +state); }));
+  const displayLetter = (letter, display) => alphabet[letter].forEach((dec, i) => [...dec2bin(dec)].forEach((state, j) => { display.clearDisplay(0); setTimeout(() => { display.setLed(0, i, j, +state); }, 200 )}));
 
-  const _displayText = (text, delay, display) => [...text]
-    .forEach((letter, i) => setTimeout(() => { displayLetter(letter, display); isOver(text, i, display) }, i * delay));
+  const _displayText = (text, delay, display, callback) => [...text]
+    .forEach((letter, i) => setTimeout(() => { displayLetter(letter, display); isOver(text, i, display, callback) }, i * delay));
 
-  _displayText(_text, _delay, _display);
+  _displayText(_text, _delay, _display, _cb);
 
 };
