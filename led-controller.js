@@ -16,6 +16,7 @@ module.exports = function (RED) {
 
       console.log(config);
       displayText(msg.payload, delay, display, function() {
+        console.log('callback');
         // callback
       });
 

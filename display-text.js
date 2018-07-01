@@ -150,9 +150,9 @@ module.exports = function(text, delay, display, callback) {
     return "00000000".substr(bin.length) + bin;
   }
 
-  const isOver = (test, i, display) => { if (test.length === i + 1) display.clearDisplay(); callback(); };
+  const isOver = (test, i, display) => { if (test.length === i + 1) display.clearDisplay(0); callback(); };
 
-  const displayLetter = (letter, display) => alphabet[letter].forEach((dec, i) => [...dec2bin(dec)].forEach((state, j) => { display.clearDisplay(); display.setLed(0, i, j, +state); }));
+  const displayLetter = (letter, display) => alphabet[letter].forEach((dec, i) => [...dec2bin(dec)].forEach((state, j) => { display.clearDisplay(0); display.setLed(0, i, j, +state); }));
 
   const _displayText = (text, delay, display) => [...text]
     .forEach((letter, i) => setTimeout(() => { displayLetter(letter, display); isOver(text, i, display) }, i * delay));
