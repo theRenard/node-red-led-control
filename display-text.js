@@ -150,7 +150,11 @@ module.exports = function(text, delay, display, cb) {
     return "00000000".substr(bin.length) + bin;
   }
 
-  const isOver = (test, i, display, callback) => { if (test.length === i + 1) display.clearDisplay(0); callback(); };
+  const isOver = (test, i, display, callback) => { if (test.length === i + 1) {
+    console.log(test.length);
+    console.log(i + 1);
+    display.clearDisplay(0); callback();
+  }};
 
   const displayLetter = (letter, display) => alphabet[letter].forEach((dec, i) => [...dec2bin(dec)].forEach((state, j) => { display.clearDisplay(0); setTimeout(() => { display.setLed(0, i, j, +state); }, 200 )}));
 
