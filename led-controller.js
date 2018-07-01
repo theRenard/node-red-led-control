@@ -10,12 +10,14 @@ module.exports = function (RED) {
   function LedController(config) {
     RED.nodes.createNode(this, config);
     var node = this;
-
     display.setBrightness(0,15);
 
     node.on('input', function (msg) {
 
-      displayText(text, delay, display);
+      console.log(config);
+      displayText(text, delay, display, function() {
+        // callback
+      });
 
     });
   }
