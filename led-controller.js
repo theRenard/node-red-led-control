@@ -13,16 +13,20 @@ module.exports = function (RED) {
     var dataPin = config.dataPin; // ex: 12
     var clockPin = config.clockPin; // ex: 11
     var csPin = config.csPin; // ex: 6
+    var isRunning = false;
 
     var display = new LedControl(dataPin, clockPin, csPin); // data pin, clock pin, cs pin
     display.setBrightness(0,brightness);
 
     node.on('input', function (msg) {
 
-      console.log(config);
-      displayText(msg.payload, delay, display, function() {
-        node.send(msg);
-      });
+      if (!isRunning) {
+        isRunning = true;
+        displayText(msg.payload, delay, display, function() {
+          node.send(msg);
+          isRunning = false;
+        });
+      }
 
     });
   }
